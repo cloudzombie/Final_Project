@@ -12,16 +12,39 @@ Meteor.publish('unsorted', function () {
 Meteor.publish('products', function () {
     return Products.find();
 });
+Meteor.publish('messagesrec', function () {
+    return MessagesRec.find();
+});
+Meteor.publish('messagessent', function () {
+    return MessagesSent.find();
+});
+
 
 Meteor.methods({
 
-    addProduct: function (type, name, description, price, manufact) {
+    saveSentMsg: function (message) {
+        MessagesSent.insert({
+            message: message,
+            time: new Date(),
+        });
+    },
+
+    saveRecMsg: function (response, phone, time) {
+        MessagesRec.insert({
+            response: response,
+            number: phone,
+            time: time,
+        });
+    },
+
+    addProduct: function (desc, name, price, type, vend, qty) {
         Products.insert({
             type: type,
             name: name,
-            description: description,
+            description: desc,
             price: price,
-            manufact: manufact,
+            vendor: vend,
+            quantity: qty,
         });
     },
 
@@ -57,6 +80,12 @@ Meteor.methods({
                 }
             }
         });
+    },
+    removeCustomer: function (number) {
+        Unsorted.remove({
+            number: number
+        });
+
     },
     deleteGroup: function (groupId) {
         Groups.remove({
@@ -138,17 +167,16 @@ Meteor.methods({
         uniquePhoneBook.forEach(function (number) {
             HTTP.call(
                 "POST",
-                'https://api.twilio.com/2010-04-01/Accounts/' +
-                process.env.TWILIO_ACCOUNT_SID + '/SMS/Messages.json', {
+                'https://api.twilio.com/2010-04-01/Accounts/ACfa2a1eda04556b7fdc62a22dc4eeca1c/SMS/Messages.json', {
                     params: {
-                        From: process.env.TWILIO_NUMBER, // Your Twilio number. Use environment variable
+                        From: '5622739750', // Your Twilio number. Use environment variable
                         To: number,
                         Body: outgoingMessage
                     },
                     // Set your credentials as environment variables 
                     // so that they are not loaded on the client
-                    auth: process.env.TWILIO_ACCOUNT_SID + ':' +
-                        process.env.TWILIO_AUTH_TOKEN
+                    auth: 'ACfa2a1eda04556b7fdc62a22dc4eeca1c' + ':' +
+                        ' 39acc944d5cac04f42114d49ffa635b6'
                 },
                 // Print error or success to console
                 function (error) {

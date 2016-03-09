@@ -7,8 +7,17 @@ Router.route('/sms', function () {
     var zip = this.request.body.FromZip;
     var time = new Date();
     console.log(userPhone, textResp, city, zip, time);
-    Meteor.call('addCustomer', 'replace', userPhone, 'replace@blank.com', city, zip);
-    xml = "<Response><Sms>Welcome to The House! Text STOP to opt out at anytime.</Sms></Response>";
+    Meteor.call('addCustomer', 'change', userPhone, 'change@change.com', city, zip);
+    Meteor.call('saveRecMsg', textResp, userPhone, time);
+    var demo = textResp.toLowerCase();
+    if (demo == 'oscar' || demo == 'oscar ' || demo == ' oscar' || demo == ' oscar ') {
+        xml = "<Response><Sms>Great meeting you! Add me on linkedin: https://www.linkedin.com/in/oscarxpena | email: oscarxpena@gmail.com </Sms></Response>"
+    } else if (demo == 'out') {
+        xml = "<Response><Sms>You have been removed from our texting list.</Sms></Response>"
+        Meteor.call('removeCustomer', userPhone);
+    } else {
+        xml = "<Response><Sms>Oops, no response for that! Try texting 'Oscar' instead. </Sms></Response>";
+    }
     this.response.writeHead(200, {
         'Content-Type': 'text/xml'
     });
@@ -18,14 +27,32 @@ Router.route('/sms', function () {
     where: 'server'
 });
 
-Router.route('/admin', function () {
-    this.render('admin');
+Router.route('/', function () {
+    if (Session.get('verified') == 'true') {
+
+        this.render('/home');
+    } else {
+        this.render('ageVer');
+    }
 });
 
 Router.route('/home', function () {
     this.render('home');
 });
 
-Router.route('/', function () {
-    this.render('enter');
+Router.route('/admin', function () {
+    if (Meteor.userId() == 'rKr5TzrnSTMqNswzK') {
+        this.render('admin');
+        return false;
+    } else {
+        Router.go('/home');
+    }
+});
+
+Router.route('/login', function () {
+    this.render('login');
+});
+
+Router.route('/textme', function () {
+    this.render('textme');
 });

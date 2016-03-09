@@ -3,54 +3,15 @@
 
 /* GroupMeteor.css */
 
+@import url(https://fonts.googleapis.com/css?family=Lobster+Two);
+@import url(https://fonts.googleapis.com/css?family=Raleway:600);
 body {
-    font-family: sans-serif;
-    background-color: #315481;
-    background-image: linear-gradient(to bottom, #FFFFFF, #2a793c 100%);
-    background-attachment: fixed;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    min-height: 100%;
-    background: white;
-}
-
-header {
-    background: #2a793c;
-    padding: 20px 15px 15px 15px;
-    position: relative;
-}
-
-#login-buttons {}
-
-h1 {
-    font-size: 1.5em;
-    margin: 0;
-    margin-bottom: 10px;
-    display: inline-block;
-    margin-right: 1em;
-    color: #FFFFFF;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-form {
-    margin-top: 10px;
-    margin-bottom: -10px;
-    position: relative;
-    color: white;
+#hot {
+    font-family: 'Lobster Two', cursive;
 }
 
 
@@ -85,16 +46,19 @@ form {
     outline: 0;
 }
 
+
+/*
 .new-text input {
     box-sizing: border-box;
     padding: 10px 0;
-    background: transparent;
-    border: none;
+        background: transparent;
+        border: none;
     width: 100%;
     padding-right: 80px;
-    font-size: 1em;
-    color: white;
+        font-size: 1em;
+        color: white;
 }
+*/
 
 .new-text input:focus {
     outline: 0;
@@ -150,3 +114,162 @@ li .text {
         padding-bottom: 5px;
     }
 }
+
+#backgroundImage {
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(smokebgd.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#blur {
+    background: rgba(17, 17, 18, 0.55);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#fun {
+    background-color: transparent;
+    border-color: white;
+}
+
+#fun:hover {
+    opacity: 0.50;
+}
+
+#errm::-webkit-input-placeholder {
+    color: white;
+}
+
+
+/* navbar styling */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 40px;
+    font-size: 30px;
+    line-height: 20px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+
+/* end navbar styling */

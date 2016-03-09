@@ -14,7 +14,6 @@ tracker                 # Meteor's client-side reactive programming library
 
 standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
-ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 insecure                # Allow all DB writes from clients (for prototyping)
 http
@@ -22,7 +21,6 @@ accounts-password
 accounts-ui
 grigio:babel
 msavin:mongol
-aldeed:collection2
 twbs:bootstrap
 mrt:moment
 iron:router
@@ -37,13 +35,8 @@ alanning:roles
 useraccounts:core
 useraccounts:bootstrap
 accounts-base
-audit-argument-checks
-browser-policy
 check
-digilord:faker
-fourseven:scss
 kadira:blaze-layout
-kadira:flow-router
 meteorhacks:fast-render
 meteorhacks:ssr
 reactive-dict

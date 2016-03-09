@@ -1,121 +1,78 @@
 <head>
-    <title>smsapp</title>
+
+    <title>MMJ Boulder</title>
+
 </head>
-
-
-<template name='admin'>
-
-    <body>
-        <div class="container">
-            <header>
-                {{> loginButtons}} {{#if currentUser}}
-                <form class="new-text">
-                    <label>Text Message</label>
-                    <textarea type="text" class='form-control' name="message" placeholder="Enter the text to send..."></textarea>
-                    <br>
-                    <button type='submit' class='btn btn-success'>Send Message</button>
-                </form>
-
-                <form class="new-group">
-                    <label>Create New Group</label>
-                    <input class='form-control' type="text" name="group" placeholder="Enter a name to create a new group..." />
-                    <br>
-                    <button type='submit' class='btn btn-success'>Create Group</button>
-                </form>
-                {{> newCustomer}} {{/if}}
-            </header>
-
-            <ul>
-                {{#each groups}} {{> group}}
-                <label>Select Customer to Add to Group</label>
-                <br>
-                <form class='new-number'>
-                    <select name="number">
-                        {{#each unsorted}}
-                        <option value='{{number}}'>{{name}} : {{number}}</option>
-                        {{/each}}
-
-                    </select>
-
-                    <button type='submit' class='btn btn-success'>Add to Group</button>
-                </form>
-                <hr> {{/each}}
-            </ul>
-
-            <li>
-                <div class="panel-group">
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse2">Customers</a>
-        </h4>
-                            <!--
-                    <button class="delete-group">&times;</button>
-                    <input type="checkbox" checked="{{checked}}" class="toggle-group" />
--->
-                        </div>
-                        <div id='collapse2' class='panel-collapse collapse'>
-                            <ul class='list-group'>
-                                {{#each unsorted}}
-                                <li class='list-group-item'>
-                                    <!--
-                            <button class="delete-number">&times;</button>
-                            <input type="checkbox" checked="{{checked}}" class="toggle-number" />
--->
-                                    <span class='text'>{{name}} : {{number}} : {{email}}</span>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </div>
-
-
-
-    </body>
-
-</template>
-
-
-
 
 
 <template name="group">
 
 
 
-    <li>
-        <div class="panel-group">
-            <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    <h4 class="panel-title">
+    <div class="panel-group">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
           <a data-toggle="collapse" href="#collapse1">{{name}} </a>
         </h4>
-                    <button class="delete-group">&times;</button>
-                    <input type="checkbox" checked="{{checked}}" class="toggle-group" />
-                </div>
-                <div id='collapse1' class='panel-collapse collapse'>
-                    <ul class='list-group'>
-                        {{#each this.numbers}}
-                        <li class='list-group-item'>
-                            <button class="delete-number">&times;</button>
-                            <input type="checkbox" checked="{{checked}}" class="toggle-number" />
-                            <span class="text">{{number}}</span>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
+                <input type="checkbox" checked="{{checked}}" class="toggle-group" />
+                <button class="delete-group">&times;</button>
+
+            </div>
+            <div id='collapse1' class='panel-collapse collapse'>
+                <ul class='list-group'>
+                    {{#each this.numbers}}
+                    <li class='list-group-item'>
+                        <button class="delete-number">&times;</button>
+                        <input type="checkbox" checked="{{checked}}" class="toggle-number" />
+                        <span class="text">{{number}}</span>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
         </div>
-    </li>
+    </div>
+
 </template>
 
-<template name='newCustomer'>
+<template name="group2">
 
+
+
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse7">{{name}} </a>
+        </h4>
+                <input type="checkbox" checked="{{checked}}" class="toggle-group" />
+                <button class="delete-group">&times;</button>
+
+            </div>
+            <div id='collapse7' class='panel-collapse collapse'>
+                <ul class='list-group'>
+                    {{#each this.numbers}}
+                    <li class='list-group-item'>
+                        <button class="delete-number">&times;</button>
+                        <input type="checkbox" checked="{{checked}}" class="toggle-number" />
+                        <span class="text">{{number}}</span>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+
+<template name='newCustomer'>
+    <h4 id="customers"> <b>Customer Management Tool</b></h4>
+    <br>
     <form class='new-customer'>
         <label>Customer's Name</label>
         <input type='text' class='form-control' name='custName' placeholder="Enter customer's name" />
@@ -124,47 +81,464 @@
         <label>Customer's E-mail Address</label>
         <input type="email" class='form-control' name='custEmail' placeholder="Enter customer's email" />
         <br>
-        <button type="submit" class='btn btn-success'>Add New Customer</button>
+        <button type="submit" class='btn btn-primary'>Add New Customer</button>
     </form>
 
 </template>
 
 
 
+
 <template name='home'>
 
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Gracie's Place</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Page 1-1</a></li>
-                                <li><a href="#">Page 1-2</a></li>
-                                <li><a href="#">Page 1-3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
+    <div id='blur' class='col-md-12'></div>
+    <div class='col-md-12' id='backgroundImage'></div>
 
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> {{> loginButtons}} </a></li>
-                    </ul>
+    <div id="hot" style=" text-align:center; border-radius: 60px; background-color: rgba(0, 0, 0, 0.67); width: 120px; height: 120px; line-height: 1px; margin-top:1%" class='col-md-3; col-md-offset-9'>
+
+        <img src="logo.png" height="30px" width="30px" />
+        <a href="https://www.google.com/maps/place/MMJ+America+-+Pearl+Street/@40.017112,-105.2820397,17z/data=!3m1!4b1!4m2!3m1!1s0x876bec26684b7d5b:0x560df6465550326c" target="_blank">
+            <h3 style='color: white'>MMJ Boulder</h3>
+        </a>
+
+
+
+
+
+
+    </div>
+    <div class='container-fluid; col-md-8' style="margin-left:17vw; margin-right:15vw; margin-top:8%">
+
+
+        <div id="hot" style="  text-align:center">
+            <form class='capturecust'>
+                <br/>
+                <hr>
+                <h1 style='color: white'>You deserve the dopest quality cannabis</h1>
+                <label>
+                    <h2 style='color: white'> Get fresh deals sent straight to your phone</h2></label>
+                <br/>
+                <input type="number" placeholder='Enter 10 digit number' name='custnumber' size='20' />
+                <br/>
+                <input id='errm' type='hidden' style='background-color: transparent; border: transparent;' size="" placeholder='' name='errmsg' disabled/>
+                <br/>
+                <input id='fun' type='submit' class='btn btn-primary' />
+                <hr>
+
+                <br/>
+
+
+            </form>
+        </div>
+
+
+    </div>
+</template>
+
+<template name="ageVer">
+
+    <div id='blur' class='col-md-12'></div>
+    <div class='col-md-12' id='backgroundImage'></div>
+
+    <div id="hot" style=" text-align:center; border-radius: 60px; background-color: rgba(0, 0, 0, 0.67); width: 120px; height: 120px; line-height: 1px; margin-top:1%" class='col-md-3; col-md-offset-9'>
+
+        <img src="logo.png" height="30px" width="30px" />
+        <a href="https://www.google.com/maps/place/MMJ+America+-+Pearl+Street/@40.017112,-105.2820397,17z/data=!3m1!4b1!4m2!3m1!1s0x876bec26684b7d5b:0x560df6465550326c" target="_blank">
+            <h3 style='color: white'>MMJ Boulder</h3>
+        </a>
+
+
+
+
+
+
+    </div>
+
+    <div class='container-fluid; col-md-8' style="margin-left:17vw; margin-right:15vw; margin-top:8%">
+
+        <div style=" text-align:center" class='container;'>
+
+
+
+            <br/>
+            <div id="hot" style="">
+                <form class='ageVerification'>
+                    <br/>
+                    <br/>
+                    <hr>
+                    <h1 style='color: white'> Please verify your age</h1>
+                    <br/>
+
+                    <input type="checkbox" class="agebox" name='ageboxname' id="_agebox" checked='{{setver}}' />
+                    <label style='color: white'>
+                        <h3>I am at least 21 years old</h3> </label>
+                    <hr>
+                    <br/>
+
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</template>
+
+
+<template name='admin'>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+
+                <li class="sidebar-brand">
+                    <br>
+
+                    <a href="#top">
+                        
+                            Admin Panel
+
+                    </a>
+
+                </li>
+                <hr>
+                <li>
+                    <a href="#wizard">Offer Wizard</a>
+                </li>
+                <li>
+                    <a href="#messages">Messages</a>
+                </li>
+                <li>
+                    <a href="#customers">Customers</a>
+                </li>
+                <li>
+                    <a href="#products">Products</a>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <div id='top'></div> {{#if this.userId = "rKr5TzrnSTMqNswzK"}}
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="col-md-offset-9"> {{> loginButtons}} </div>
+            <div class=" container-fluid ">
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <div class="container">
+                            <header>
+                                {{> messagewizard}}
+                                <label> Select Customers to Message</label>
+                                <li>
+
+                                    {{#each groups}} {{> group}} {{/each}}
+                                </li>
+
+
+                                <form class="new-text">
+                                    <label>Text Message</label>
+                                    <textarea type="text " class='form-control' name="message" placeholder="Enter the text to send... "></textarea>
+                                    <br>
+                                    <button type='submit' class='btn btn-primary'>Send Message</button>
+                                </form>
+
+
+                                <br/>
+                                <hr> {{> newCustomer}}
+                            </header>
+
+                            <br/>
+
+                            <li>
+                                <div class="panel-group ">
+                                    <div class="panel panel-default ">
+
+                                        <div class="panel-heading ">
+                                            <h4 class="panel-title ">
+          <a data-toggle="collapse" href="#collapse2 ">Customers</a>
+        </h4>
+                                            <!--
+                    <button class="delete-group ">&times;</button>
+                    <input type="checkbox " checked="{{checked}} " class="toggle-group " />
+-->
+                                        </div>
+                                        <div id='collapse2' class='panel-collapse collapse'>
+                                            <ul class='list-group'>
+                                                {{#each unsorted}}
+                                                <li class='list-group-item'>
+                                                    <!--
+                            <button class="delete-number ">&times;</button>
+                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />
+-->
+                                                    <span class='text'> {{number}}</span>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                {{#each groups}} {{> group2}}
+                                <label>Select Customer to Add to Group</label>
+                                <br>
+                                <form class='new-number'>
+                                    <select name="number">
+                                        {{#each unsorted}}
+                                        <option value='{{number}}'>{{name}} : {{number}}</option>
+                                        {{/each}}
+
+                                    </select>
+                                    <br>
+                                    <br>
+                                    <button type='submit' class='btn btn-primary'>Add to Group</button>
+                                </form>
+                                {{/each}}
+                            </li>
+                            <br/>
+                            <form class="new-group">
+                                <label>Create New Group</label>
+                                <input class='form-control' type="text" name="group" placeholder="Enter a name to create a new group... " />
+                                <br>
+                                <button type='submit' class='btn btn-primary'>Create Group</button>
+                            </form>
+                            {{> productform}}
+                            <br>
+                            <li>
+                                <div class="panel-group ">
+                                    <div class="panel panel-default ">
+
+                                        <div class="panel-heading ">
+                                            <h4 class="panel-title ">
+          <a data-toggle="collapse" href="#collapse3 ">Products</a>
+        </h4>
+                                            <!--
+                    <button class="delete-group ">&times;</button>
+                    <input type="checkbox " checked="{{checked}} " class="toggle-group " />
+-->
+                                        </div>
+                                        <div id='collapse3' class='panel-collapse collapse'>
+                                            <ul class='list-group'>
+                                                {{#each products}}
+                                                <li class='list-group-item'>
+                                                    <!--
+                            <button class="delete-number ">&times;</button>
+                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />
+-->
+                                                    <span class='text'>{{name}} : {{quantity}} : {{price}} : {{type}} : {{vendor}}</span>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr>
+                            <h4 id="messages"> <b>Message Log</b></h4>
+                            <br>
+                            <li>
+                                <div class="panel-group ">
+                                    <div class="panel panel-default ">
+
+                                        <div class="panel-heading ">
+                                            <h4 class="panel-title ">
+          <a data-toggle="collapse" href="#collapse4"> Messages Sent</a>
+        </h4>
+                                            <!--
+                    <button class="delete-group ">&times;</button>
+                    <input type="checkbox " checked="{{checked}} " class="toggle-group " />
+-->
+                                        </div>
+                                        <div id='collapse4' class='panel-collapse collapse'>
+                                            <ul class='list-group'>
+                                                {{#each messagessent}}
+                                                <li class='list-group-item'>
+                                                    <!--
+                            <button class="delete-number ">&times;</button>
+                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />
+-->
+                                                    <span class='text'>
+                                                        Date: {{time}} <br/>
+                                                        Message: {{response}}
+                                                    </span>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="panel-group ">
+                                    <div class="panel panel-default ">
+
+                                        <div class="panel-heading ">
+                                            <h4 class="panel-title ">
+          <a data-toggle="collapse" href="#collapse5"> Messages Received</a>
+        </h4>
+                                            <!--
+                    <button class="delete-group ">&times;</button>
+                    <input type="checkbox " checked="{{checked}} " class="toggle-group " />
+-->
+                                        </div>
+                                        <div id='collapse5' class='panel-collapse collapse'>
+                                            <ul class='list-group'>
+                                                {{#each messagesrec}}
+                                                <li class='list-group-item'>
+                                                    <!--
+                            <button class="delete-number ">&times;</button>
+                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />
+-->
+                                                    <span class='text'>
+                                                        Date: {{time}} <br/>
+                                                        Number: {{number}} <br/>
+                                                        Message: {{response}}
+                                                    </span>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </nav>
 
-    </body>
+        </div>
+        <!-- /#page-content-wrapper -->
+        {{/if}}
+    </div>
+</template>
+
+
+<template name='productform'>
+    <hr>
+    <h4 id='products'> <b>Product Entry Tool</b></h4>
+    <br>
+    <form class='new-product'>
+        <label>Product Name</label>
+        <input type='text' class='form-control' name='prodname' placeholder="Enter product 's name" />
+        <label>Vendor</label>
+        <input type='text ' class='form-control ' name='prodvend' placeholder="Enter vendor's name " />
+        <label>Description</label>
+        <input type="text " class='form-control' name='proddesc' placeholder="Enter product description " />
+        <label>Price</label>
+        <input type='number' class='form-control' name='prodprice' placeholder="Enter product price " />
+        <label>Quantity</label>
+        <br>
+        <select name="quantSel">
+
+            <option value='1g'>1 gram</option>
+            <option value='1'>1 item</option>
+            <option value='2g'>2 grams</option>
+            <option value='1/8oz'>1/8 oz</option>
+            <option value='1/4oz'>1/4 oz</option>
+            <option value='1/2oz'>1/2 oz</option>
+            <option value='1oz'>1 oz</option>
+        </select>
+        <br>
+        <label>Type</label>
+        <select class='form-control' name='prodtype' placeholder="Select product type ">
+            <option value='flowerS'> Flower - Sativa</option>
+            <option value='flowerI'> Flower - Indica</option>
+            <option value='flowerH'> Flower - Hybrid</option>
+            <option value='concentrate'> Concentrate</option>
+            <option value='edible'> Edible</option>
+            <option value='topical'> Topical </option>
+            <option value='preroll'> Preroll</option>
+        </select>
+        <br>
+        <button type="submit " class='btn btn-primary'>Add New Product</button>
+        <br>
+    </form>
+
+</template>
+
+
+<template name='messagewizard'>
+    <hr>
+    <h4 id='wizard'> <b>Offer Creation Tool</b></h4>
+    <br>
+
+
+    <form class="new-wiz">
+        <label>Select Products</label>
+        <select name="productSelect">
+            {{#each products}}
+            <option value='{{name}} {{price}} {{quantity}}'>{{name}} : {{price}} : {{quantity}}</option>
+            {{/each}}
+        </select>
+        <br/>
+        <label>Select Location</label>
+        <select name='location'>
+            <option value='MMJ Boulder, 1909 Broadway #100, Boulder, CO 80302'> MMJ Boulder </option>
+            <option value='MMJ Denver, 2042 Arapahoe Street Denver, CO 80205'> MMJ Denver </option>
+
+        </select>
+        <br/>
+        <label> Select Discount</label>
+        <select name='discount'>
+            <option value='Buy 1 get 1 free'> Buy 1 get 1 free</option>
+            <option value='Buy 1 get 2nd half off'> Buy 1 get 2nd half off</option>
+            <option value='10% off'> 10% off</option>
+            <option value='20% off'> 20% off</option>
+            <option value='30% off'> 30% off</option>
+            <option value='40% off'> 40% off</option>
+            <option value='50% off'> 50% off</option>
+            <option value='60% off'> 60% off</option>
+            <option value='70% off'> 70% off</option>
+            <option value='80% off'> 80% off</option>
+            <option value='90% off'> 90% off</option>
+        </select>
+        <br/>
+        <label>Select Offer End Date</label>
+        <input type="date" name='offerend' />
+        <br/>
+
+        <button type='submit' class='btn btn-primary'>Preview Message</button>
+        <br/>
+        <br/>
+        <label> Preview</label>
+        <br/>
+        <textarea type="text " class='form-control' id='message' name="message" placeholder="Preview Message "></textarea>
+        <br>
+
+
+    </form>
+
+</template>
+
+
+<template name="login">
+    {{> loginButtons}}
+
+</template>
+
+
+<template name='textme'>
+    <div class='jumbotron' style="background-color: rgba(212, 71, 19, 0.76); color: white">
+        <center>
+            <h1> Text <br>
+            <br> 'Oscar' <br>
+            <br> to <br>
+            <br>
+            562-273-9750</h1>
+            <br>
+            <br>
+            <br>
+            <br>
+        </center>
+    </div>
 </template>
