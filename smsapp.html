@@ -275,6 +275,7 @@
                             <button class="delete-number ">&times;</button>
                             <input type="checkbox " checked="{{checked}} " class="toggle-number " />
 -->
+                                                    <button class="delete-customer" style='background: transparent; border: none'>x</button>
                                                     <span class='text'> {{number}}</span>
                                                 </li>
                                                 {{/each}}
@@ -327,10 +328,10 @@
                                             <ul class='list-group'>
                                                 {{#each products}}
                                                 <li class='list-group-item'>
-                                                    <!--
-                            <button class="delete-number ">&times;</button>
-                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />
--->
+
+                                                    <button class="delete-product" style='background: transparent; border: none'>x</button>
+                                                    <!--                            <input type="checkbox " checked="{{checked}} " class="toggle-number " />-->
+
                                                     <span class='text'>{{name}} : {{quantity}} : {{price}} : {{type}} : {{vendor}}</span>
                                                 </li>
                                                 {{/each}}
@@ -365,7 +366,7 @@
 -->
                                                     <span class='text'>
                                                         Date: {{time}} <br/>
-                                                        Message: {{response}}
+                                                        Message: {{message}}
                                                     </span>
                                                 </li>
                                                 {{/each}}
@@ -474,18 +475,19 @@
 
 
     <form class="new-wiz">
-        <label>Select Products</label>
-        <select name="productSelect">
-            {{#each products}}
-            <option value='{{name}} {{price}} {{quantity}}'>{{name}} : {{price}} : {{quantity}}</option>
-            {{/each}}
-        </select>
-        <br/>
         <label>Select Location</label>
         <select name='location'>
             <option value='MMJ Boulder, 1909 Broadway #100, Boulder, CO 80302'> MMJ Boulder </option>
             <option value='MMJ Denver, 2042 Arapahoe Street Denver, CO 80205'> MMJ Denver </option>
 
+        </select>
+
+        <br/>
+        <label>Select Products</label>
+        <select name="productSelect">
+            {{#each products}}
+            <option value='{{name}} ${{price}} per {{quantity}}'>{{name}} : {{price}} : {{quantity}}</option>
+            {{/each}}
         </select>
         <br/>
         <label> Select Discount</label>
@@ -502,8 +504,9 @@
             <option value='80% off'> 80% off</option>
             <option value='90% off'> 90% off</option>
         </select>
-        <br/>
+        <br>
         <label>Select Offer End Date</label>
+        <br>
         <input type="date" name='offerend' />
         <br/>
 
@@ -521,7 +524,7 @@
 </template>
 
 
-<template name="login">
+<template name="zibzubza">
     {{> loginButtons}}
 
 </template>

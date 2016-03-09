@@ -21,7 +21,11 @@ Meteor.publish('messagessent', function () {
 
 
 Meteor.methods({
-
+    deleteProduct: function (id) {
+        Products.remove({
+            _id: id,
+        })
+    },
     saveSentMsg: function (message) {
         MessagesSent.insert({
             message: message,
@@ -45,6 +49,7 @@ Meteor.methods({
             price: price,
             vendor: vend,
             quantity: qty,
+            createdAt: new Date(),
         });
     },
 

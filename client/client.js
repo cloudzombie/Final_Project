@@ -37,7 +37,7 @@ Template.admin.helpers({
         // Find all products and list the newest ones first
         return MessagesRec.find({}, {
             sort: {
-                createdAt: -1
+                time: -1
             }
         });
     },
@@ -45,7 +45,7 @@ Template.admin.helpers({
         // Find all products and list the newest ones first
         return MessagesSent.find({}, {
             sort: {
-                createdAt: -1
+                time: -1
             }
         });
     },
@@ -64,6 +64,7 @@ Template.messagewizard.helpers({
 });
 
 Template.messagewizard.events({
+
     "submit .new-wiz": function (event) {
         var prodSelect = event.target.productSelect.value;
         var offerLocation = event.target.location.value;
@@ -141,6 +142,14 @@ Template.admin.events({
         alert('Your message is being sent!');
         // Prevent default form submit
         return false;
+    },
+    "click .delete-product": function () {
+        // Remove a group from our collection
+        Meteor.call("deleteProduct", this._id);
+    },
+    "click .delete-customer": function () {
+        // Remove a group from our collection
+        Meteor.call("removeCustomer", this.number);
     }
 });
 

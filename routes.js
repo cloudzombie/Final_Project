@@ -49,8 +49,8 @@ Router.route('/admin', function () {
     }
 });
 
-Router.route('/login', function () {
-    this.render('login');
+Router.route('/zibzubza', function () {
+    this.render('zibzubza');
 });
 
 Router.route('/textme', function () {
