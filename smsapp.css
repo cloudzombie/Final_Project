@@ -131,7 +131,7 @@ li .text {
 }
 
 #blur {
-    background: rgba(17, 17, 18, 0.55);
+    background: rgba(17, 17, 18, 0.45);
     position: absolute;
     z-index: -1;
     top: 0;
@@ -189,7 +189,8 @@ li .text {
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;   padding: 15px;
+    position: absolute;
+    padding: 15px;
 }
 
 #wrapper.toggled #page-content-wrapper {
