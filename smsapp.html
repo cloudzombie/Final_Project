@@ -4,7 +4,7 @@
 
 </head>
 
-
+<!--Forms for displaying groups-->
 <template name="group">
 
 
@@ -69,7 +69,7 @@
 
 </template>
 
-
+<!--Form for entering a new customer-->
 <template name='newCustomer'>
     <h4 id="customers"> <b>Customer Management Tool</b></h4>
     <br>
@@ -88,12 +88,12 @@
 
 
 
-
+<!--Homepage-->
 <template name='home'>
 
     <div id='blur' class='col-md-12'></div>
     <div class='col-md-12' id='backgroundImage'></div>
-
+    <!--    background image styles-->
     <div id="hot" style=" text-align:center; border-radius: 60px; background-color: rgba(0, 0, 0, 0.67); width: 120px; height: 120px; line-height: 1px; margin-top:1%" class='col-md-3; col-md-offset-9'>
 
         <img src="logo.png" height="30px" width="30px" />
@@ -107,6 +107,8 @@
 
 
     </div>
+
+    <!--    container for the phone number input-->
     <div class='container-fluid; col-md-8' style="margin-left:17vw; margin-right:15vw; margin-top:8%">
 
 
@@ -135,6 +137,7 @@
     </div>
 </template>
 
+<!--Age verification page-->
 <template name="ageVer">
 
     <div id='blur' class='col-md-12'></div>
@@ -154,6 +157,7 @@
 
     </div>
 
+    <!--age verifcation container-->
     <div class='container-fluid; col-md-8' style="margin-left:17vw; margin-right:15vw; margin-top:8%">
 
         <div style=" text-align:center" class='container;'>
@@ -185,7 +189,7 @@
 
 </template>
 
-
+<!--Admin page-->
 <template name='admin'>
 
     <div id="wrapper">
@@ -423,7 +427,7 @@
     </div>
 </template>
 
-
+<!--Template for entering a new product-->
 <template name='productform'>
     <hr>
     <h4 id='products'> <b>Product Entry Tool</b></h4>
@@ -467,7 +471,7 @@
 
 </template>
 
-
+<!--Template for creating a new offer message-->
 <template name='messagewizard'>
     <hr>
     <h4 id='wizard'> <b>Offer Creation Tool</b></h4>
@@ -523,13 +527,13 @@
 
 </template>
 
-
+<!--Page for incase the admin accidentally logs out-->
 <template name="zibzubza">
     {{> loginButtons}}
 
 </template>
 
-
+<!--Page showcasing capabilities on Demo night-->
 <template name='textme'>
     <div class='jumbotron' style="background-color: rgba(212, 71, 19, 0.76); color: white">
         <center>

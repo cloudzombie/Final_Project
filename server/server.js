@@ -1,5 +1,8 @@
+//require the npm twilio package
 var Twilio = Meteor.npmRequire('twilio');
 twilio = Twilio("ACfa2a1eda04556b7fdc62a22dc4eeca1c", "39acc944d5cac04f42114d49ffa635b6");
+
+
 // Specify which collections are sent to the client
 Meteor.publish("groups", function () {
     return Groups.find({
@@ -19,13 +22,17 @@ Meteor.publish('messagessent', function () {
     return MessagesSent.find();
 });
 
-
+//back end functions
 Meteor.methods({
+
+    //deletes product from product collection
     deleteProduct: function (id) {
         Products.remove({
             _id: id,
         })
     },
+
+    //saves sent SMS to messagessent collection
     saveSentMsg: function (message) {
         MessagesSent.insert({
             message: message,
@@ -33,6 +40,7 @@ Meteor.methods({
         });
     },
 
+    //saves sentt SMS to messagesrec collection
     saveRecMsg: function (response, phone, time) {
         MessagesRec.insert({
             response: response,
@@ -41,6 +49,7 @@ Meteor.methods({
         });
     },
 
+    //adds product to product collection
     addProduct: function (desc, name, price, type, vend, qty) {
         Products.insert({
             type: type,
@@ -53,6 +62,7 @@ Meteor.methods({
         });
     },
 
+    //adds customer to unsorted collection
     addCustomer: function (name, number, email, city, zip) {
         Unsorted.insert({
             name: name,
@@ -65,6 +75,7 @@ Meteor.methods({
         });
     },
 
+    //adds new group to the groups collection
     addGroup: function (name) {
         Groups.insert({
             name: name,
@@ -74,6 +85,8 @@ Meteor.methods({
             numbers: []
         });
     },
+
+    //adds customer phone number to a group 
     addNumber: function (groupId, number) {
         Groups.update({
             _id: groupId
@@ -86,17 +99,23 @@ Meteor.methods({
             }
         });
     },
+
+    //removes customer phone number from unsorted collection
     removeCustomer: function (number) {
         Unsorted.remove({
             number: number
         });
 
     },
+
+    //removes a group from the groups collection 
     deleteGroup: function (groupId) {
         Groups.remove({
             _id: groupId
         });
     },
+
+    //removes customer phone number from group
     deleteNumber: function (groupId, number) {
         Groups.update({
             _id: groupId
@@ -108,6 +127,8 @@ Meteor.methods({
             }
         });
     },
+
+    //selects which groups to send out SMS to
     toggleGroup: function (groupId, toggle) {
         Groups.update({
             _id: groupId
@@ -116,6 +137,7 @@ Meteor.methods({
                 checked: toggle
             }
         });
+
         // Find every number that differs from Group's "checked" boolean
         var numbers =
             Groups.find({
@@ -125,6 +147,7 @@ Meteor.methods({
                     }
                 }
             });
+
         // Set all numbers to match Group's "checked" boolean
         numbers.forEach(function (setter) {
             for (var index in setter.numbers) {

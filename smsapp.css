@@ -3,15 +3,27 @@
 
 /* GroupMeteor.css */
 
+
+/*Load external fonts*/
+
 @import url(https://fonts.googleapis.com/css?family=Lobster+Two);
 @import url(https://fonts.googleapis.com/css?family=Raleway:600);
+
+/*Font for the back end*/
+
 body {
     font-family: 'Raleway', sans-serif;
 }
 
+
+/*Font for the front end*/
+
 #hot {
     font-family: 'Lobster Two', cursive;
 }
+
+
+/*Styles for the back end forms*/
 
 
 /*
@@ -101,6 +113,9 @@ li {
 }
 */
 
+
+/*List group styles*/
+
 li .text {
     margin-left: 10px;
 }
@@ -113,6 +128,9 @@ li .text {
         padding-bottom: 5px;
     }
 }
+
+
+/*Background image for front end*/
 
 #backgroundImage {
     position: absolute;
@@ -139,6 +157,9 @@ li .text {
     height: 100%;
     width: 100%;
 }
+
+
+/*Styles for the transparent button*/
 
 #fun {
     background-color: transparent;
@@ -269,6 +290,3 @@ li .text {
         margin-right: 0;
     }
 }
-
-
-/* end navbar styling */

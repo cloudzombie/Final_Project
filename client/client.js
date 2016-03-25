@@ -34,7 +34,7 @@ Template.admin.helpers({
     },
 
     messagesrec: function () {
-        // Find all products and list the newest ones first
+        // Find all received messages and list the newest ones first
         return MessagesRec.find({}, {
             sort: {
                 time: -1
@@ -42,7 +42,7 @@ Template.admin.helpers({
         });
     },
     messagessent: function () {
-        // Find all products and list the newest ones first
+        // Find all sent messages and list the newest ones first
         return MessagesSent.find({}, {
             sort: {
                 time: -1
@@ -64,7 +64,7 @@ Template.messagewizard.helpers({
 });
 
 Template.messagewizard.events({
-
+    //collects information entered into the offer wizard and creates a sample message
     "submit .new-wiz": function (event) {
         var prodSelect = event.target.productSelect.value;
         var offerLocation = event.target.location.value;
@@ -78,6 +78,7 @@ Template.messagewizard.events({
 });
 
 Template.productform.events({
+    //colelcts entered into product form
     "submit .new-product": function (event) {
         var newProdName = event.target.prodname.value;
         var newProdVend = event.target.prodvend.value;
@@ -86,10 +87,13 @@ Template.productform.events({
         var newProdQty = event.target.quantSel.value;
         var newProdType = event.target.prodtype.value;
 
-
+        //check to ensure all fields were entered
         if (newProdDesc !== '' && newProdName !== '' && newProdPrice !== '' && newProdVend !== '' && newProdType !== '') {
+            //creates new product if all fields valid
             Meteor.call('addProduct', newProdDesc, newProdName, newProdPrice, newProdType, newProdVend, newProdQty);
         }
+
+        //resets field values to be blank after submission
         event.target.prodname.value = '';
         event.target.prodvend.value = '';
         event.target.proddesc.value = '';
@@ -177,13 +181,16 @@ Template.group.events({
 });
 
 Template.newCustomer.events({
+    //grabs field inputs from new customer form
     'submit .new-customer': function (event) {
         var name = event.target.custName.value;
         var number = event.target.custNumber.value;
         var email = event.target.custEmail.value;
         if (name !== '' && number !== '' && email !== '') {
+            //adds new customer via hard entry
             Meteor.call('addCustomer', name, number, email);
         }
+        //sets fields to blanka fter submission
         event.target.custName.value = '';
         event.target.custNumber.value = '';
         event.target.custEmail.value = '';
@@ -192,6 +199,7 @@ Template.newCustomer.events({
 });
 
 Template.ageVer.events({
+    //sets ageverification in browser local storage
     'change.setver input': function () {
 
         Session.set('verified', 'true');
@@ -203,20 +211,26 @@ Template.ageVer.events({
 });
 
 Template.home.events({
+    //grabs customer information from front page
     'submit .capturecust': function () {
         var numberTyped = event.target.custnumber.value;
+        //regex to ensure number is captured regardless of input format
         var number = numberTyped.replace(/-|\.|\(|\)|\s/g, '');
         if (number !== '' && number.length == 10) {
             console.log(number);
+            //add customer to unsorted collection
             Meteor.call('addCustomer', 'change', number, 'change@chnage.com', 'change', 'change');
+            //send confirmation message
             Meteor.call('sendMessage', 'Welcome to the MMJ Boulder mailing list! Text OUT to leave at anytime.');
         } else {
+            //error message
             event.target.custnumber.value = '';
             event.target.errmsg.placeholder = 'Error: please enter a 10 digit phone number';
             event.target.errmsg.size = '70';
             event.target.errmsg.type = '';
             return false;
         }
+        //success message
         event.target.custnumber.value = '';
         event.target.errmsg.placeholder = 'You\'ve been subscribed!';
         event.target.errmsg.size = '20';
@@ -225,10 +239,3 @@ Template.home.events({
 
     }
 });
-
-
-
-// Configure Accounts to require username instead of email
-//    Accounts.ui.config({
-//        passwordSignupFields: "USERNAME_ONLY"
-//    });
